@@ -46,11 +46,14 @@ def get_basic_info(version=__version__):
     config = Config()
     if not config.is_release():
         # Append current git commit hash to __version__.
-        master = op.join(top_dir, '.git/refs/heads/master')
-        if op.isfile(master):
-            fd = open(master, 'r')
-            version += '+git.%s' % fd.readline().strip()
-            fd.close()
+        head_file = op.join(top_dir, '.git', 'HEAD')
+        if op.isfile(head_file):
+            with open(head_file) as fp:
+                current_ref = op.join(top_dir, '.git', fp.read()[5:-1])
+                if op.isfile(current_ref):
+                    fd = open(current_ref, 'r')
+                    version += '+git.%s' % fd.readline().strip()
+                    fd.close()
 
     in_source_tree = up_dir == '..'
 
