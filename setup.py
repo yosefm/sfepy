@@ -241,7 +241,6 @@ def setup_package():
 
 
 if __name__ == '__main__':
-    check_versions()
     setup_package()
 
     from sfepy import Config

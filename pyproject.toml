@@ -11,6 +11,5 @@ requires = [
     "numpy==1.20.*; python_version <= '3.9'", # meshio undeclared constraint.
     "oldest-supported-numpy; python_version > '3.9'",
     "pyparsing",
-    "scipy",
-    "tables",
+    "scipy"
 ]
